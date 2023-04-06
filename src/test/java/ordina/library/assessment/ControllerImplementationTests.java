@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -16,11 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ordina.library.assessment.Implementations.WordFrequencyImplement;
 import ordina.library.assessment.Interfaces.WordFrequency;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -39,9 +35,7 @@ public class ControllerImplementationTests {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        System.out.println("Response: "+  result.getResponse().getContentAsString());
         int actualValue = Integer.parseInt(result.getResponse().getContentAsString());
-        System.out.println("Actual Value: " + actualValue);
         assertEquals(expectedValue, actualValue);
     }
 
@@ -62,7 +56,7 @@ public class ControllerImplementationTests {
     public void testcalculateMostFrequentNWords() throws Exception{
         WordFrequency[] wordFrequencies = new WordFrequency[]{
             new WordFrequencyImplement("the", 2),
-            new WordFrequencyImplement("lake", 1),
+            new WordFrequencyImplement("shines", 1),
             new WordFrequencyImplement("over", 1)
         };
         String text = "the sun shines over the lake";
