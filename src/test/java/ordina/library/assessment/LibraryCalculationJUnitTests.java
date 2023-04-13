@@ -42,9 +42,6 @@ public class LibraryCalculationJUnitTests {
         Mockito.when(libraryCalculations.calculateFrequencyForWord(text, "chuck")).thenCallRealMethod();
         int actualOutput = libraryCalculations.calculateFrequencyForWord(text, "chuck");
         Mockito.verify(libraryCalculations).calculateFrequencyForWord(text, "chuck");
-
-        String[] strings = libraryCalculations.test(text, "if");
-        System.out.println(strings);
         System.out.println(actualOutput);
 
         assertEquals(expectedOutput, actualOutput);
