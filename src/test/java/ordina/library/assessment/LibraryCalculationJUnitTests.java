@@ -13,54 +13,45 @@ import ordina.library.assessment.Implementations.WordFrequencyImplement;
 import ordina.library.assessment.Interfaces.WordFrequency;
 
 public class LibraryCalculationJUnitTests {
-    LibraryCalculations libraryCalculations;
-
+    LibraryCalculations libraryCalculations = new LibraryCalculations();
     @BeforeEach
     void setup(){
-        this.libraryCalculations = mock(LibraryCalculations.class);
     }
 
     // Looks if highest frequency is two in text
     @Test
     public void givenText_whenCalculateHighestFrequency_returnHighestFrequency() {
-        LibraryCalculations libraryCalculations = mock(LibraryCalculations.class);
-
+        //given
         String text = "the quick brown fox jumps over the lazy dog";
         int expectedOutput = 2;
-        Mockito.when(libraryCalculations.calculateHighestFrequency(text)).thenReturn(expectedOutput);
+        //when
         int actualOutput = libraryCalculations.calculateHighestFrequency(text);
-        Mockito.verify(libraryCalculations).calculateHighestFrequency(text);
+        //then
         assertEquals(expectedOutput, actualOutput);
     }
 
     // Looks if chuck appears twice in text
     @Test
     public void givenText_whenCalculateFrequencyForWord_returnWordFrequency(){
-        LibraryCalculations libraryCalculations = Mockito.mock(LibraryCalculations.class);
+        //given
         String text = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
         int expectedOutput = 2;
-        Mockito.when(libraryCalculations.calculateFrequencyForWord(text, "chuck")).thenCallRealMethod();
+        //when
         int actualOutput = libraryCalculations.calculateFrequencyForWord(text, "chuck");
-        Mockito.verify(libraryCalculations).calculateFrequencyForWord(text, "chuck");
-        System.out.println(actualOutput);
-
+        //then
         assertEquals(expectedOutput, actualOutput);
     }
 
     // Looks if word "if" doesn't appear thrice in text with expectedOutput being 3 and actualOutput should be 1
     @Test
     public void givenText_whenCalculateFrequencyForWord_returnNotEqualWordFrequency(){
-        LibraryCalculations libraryCalculations = Mockito.spy(LibraryCalculations.class);
-        //LibraryCalculations libraryCalculations = new LibraryCalculations();
+        //given
         int unexpectedOutput = 3;
         String word = "chuck";
         String text = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
-        
-        Mockito.when(libraryCalculations.calculateFrequencyForWord(text, word)).thenCallRealMethod();
+        //when
         int actualOutput = libraryCalculations.calculateFrequencyForWord(text, word);
-        
-        Mockito.verify(libraryCalculations).calculateFrequencyForWord(text, word);
-
+        //then
         assertNotEquals("fail", unexpectedOutput, actualOutput);
     }
 
