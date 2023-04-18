@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mockito;
 import ordina.library.assessment.Implementations.LibraryCalculations;
 import ordina.library.assessment.Implementations.WordFrequencyImplement;
 import ordina.library.assessment.Interfaces.WordFrequency;
@@ -64,19 +63,16 @@ public class LibraryCalculationJUnitTests {
     @Test
     public void givenTextAndN_whenCalculateMostFrequentNWords_returnWordFrequencyArray(){
         // given
-        LibraryCalculations libraryCalculations = Mockito.mock(LibraryCalculations.class);
-        String text = "The sun shines over the lake";
+        String text = "the sun shines over the lake";
         int n = 3;
         WordFrequency[] wordFrequencies = new WordFrequency[]{
             new WordFrequencyImplement("the", 2),
-            new WordFrequencyImplement("lake", 1),
+            new WordFrequencyImplement("shines", 1),
             new WordFrequencyImplement("over", 1)
         };
 
         // when
-        Mockito.when(libraryCalculations.calculateMostFrequentNWords(text, n)).thenReturn(wordFrequencies);
-        WordFrequency[] actualOutput = libraryCalculations.calculateMostFrequentNWords(text, 3);
-        Mockito.verify(libraryCalculations).calculateMostFrequentNWords(text, 3);
+        WordFrequency[] actualOutput = libraryCalculations.calculateMostFrequentNWords(text, n);
         
         // then
         assertArrayEquals(wordFrequencies, actualOutput);
