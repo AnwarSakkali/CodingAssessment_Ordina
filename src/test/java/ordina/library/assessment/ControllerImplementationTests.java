@@ -31,12 +31,16 @@ public class ControllerImplementationTests {
 
     @Test
     public void givenText_whenCalculateHighestFrequencyController_returnHighestFrequency() throws Exception {
+        // given
         int expectedValue = 2;
         String text = "the sun rises in the morning";
+
+        // when 
         MvcResult result = mockMvc.perform(get("/highestFrequency/{text}", text))
                 .andExpect(status().isOk())
                 .andReturn();
 
+        // then
         int actualValue = Integer.parseInt(result.getResponse().getContentAsString());
         assertEquals(expectedValue, actualValue);
     }
@@ -55,7 +59,7 @@ public class ControllerImplementationTests {
                 
         int actualValue = Integer.parseInt(result.getResponse().getContentAsString());
 
-        // then
+        //  then
         assertEquals(expectedValue, actualValue);
     }
 
