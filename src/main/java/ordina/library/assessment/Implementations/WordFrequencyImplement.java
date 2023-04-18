@@ -1,5 +1,7 @@
 package ordina.library.assessment.Implementations;
 
+import java.util.Objects;
+
 import ordina.library.assessment.Interfaces.WordFrequency;
 
 public class WordFrequencyImplement implements WordFrequency{
@@ -25,6 +27,16 @@ public class WordFrequencyImplement implements WordFrequency{
     public String toString() {
         return "word=" + word + ", frequency=" + frequency;
     }
+
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof WordFrequencyImplement)) return false;
+    WordFrequencyImplement that = (WordFrequencyImplement) o;
+    return getFrequency() == that.getFrequency() &&
+            Objects.equals(getWord(), that.getWord());
+}
+
 
     
 }
